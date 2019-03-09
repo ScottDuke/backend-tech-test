@@ -17,6 +17,7 @@ namespace :import do
       song = video["song"]
       artist = Artist.find_or_create_by(song["artist"])
       city = City.find_or_create_by(song["city"])
+      song = Song.find_or_create_by(song)
     end
   end
 
