@@ -26,6 +26,7 @@ describe 'import rake task' do
     end
 
     let(:parsed_data) { JSON.load(example_data) }
+    let(:song) { double("Song", id: 3976) }
 
     let :run_rake_task do
       Rake::Task["import:video_data"].reenable
@@ -34,7 +35,7 @@ describe 'import rake task' do
 
     before do
       allow(ImportHelper).to receive(:get_video_data).and_return(parsed_data)
-      allow(Song).to receive(:find_or_create_by)
+      allow(Song).to receive(:find_or_create_by).and_return(song)
     end
 
     it "calls ImportHelper.get_video_data with video data url" do
@@ -52,8 +53,13 @@ describe 'import rake task' do
       run_rake_task
     end
 
-     it "creates new or find new city" do
+     it "creates new or find new song" do
       expect(Song).to receive(:find_or_create_by).with(parsed_data.first["song"])
+      run_rake_task
+    end
+
+    it "creates new or find new video" do
+      expect(Video).to receive(:create).with(song_id: song.id, video_uid: parsed_data.first["video_uid"])
       run_rake_task
     end
   end
