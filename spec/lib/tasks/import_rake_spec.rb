@@ -50,5 +50,10 @@ describe 'import rake task' do
       expect(City).to receive(:find_or_create_by).with(parsed_data.first["song"]["city"]).and_return(nil)
       run_rake_task
     end
+
+     it "creates new or find new city" do
+      expect(Song).to receive(:find_or_create_by).with(parsed_data.first["song"]).and_return(nil)
+      run_rake_task
+    end
   end
 end
