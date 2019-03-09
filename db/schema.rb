@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_09_140416) do
+ActiveRecord::Schema.define(version: 2019_03_09_143409) do
 
   create_table "artists", id: :bigint, default: nil, force: :cascade do |t|
     t.string "title"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 2019_03_09_140416) do
     t.string "cached_slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string "title"
+    t.string "cached_slug"
+    t.integer "artist_id"
+    t.integer "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_songs_on_artist_id"
+    t.index ["city_id"], name: "index_songs_on_city_id"
   end
 
 end
