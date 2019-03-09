@@ -34,6 +34,7 @@ describe 'import rake task' do
 
     before do
       allow(ImportHelper).to receive(:get_video_data).and_return(parsed_data)
+      allow(Song).to receive(:find_or_create_by)
     end
 
     it "calls ImportHelper.get_video_data with video data url" do
@@ -42,17 +43,17 @@ describe 'import rake task' do
     end
 
     it "creates new or find new artist" do
-      expect(Artist).to receive(:find_or_create_by).with(parsed_data.first["song"]["artist"]).and_return(nil)
+      expect(Artist).to receive(:find_or_create_by).with(parsed_data.first["song"]["artist"])
       run_rake_task
     end
 
     it "creates new or find new city" do
-      expect(City).to receive(:find_or_create_by).with(parsed_data.first["song"]["city"]).and_return(nil)
+      expect(City).to receive(:find_or_create_by).with(parsed_data.first["song"]["city"])
       run_rake_task
     end
 
      it "creates new or find new city" do
-      expect(Song).to receive(:find_or_create_by).with(parsed_data.first["song"]).and_return(nil)
+      expect(Song).to receive(:find_or_create_by).with(parsed_data.first["song"])
       run_rake_task
     end
   end
