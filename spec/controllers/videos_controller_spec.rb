@@ -27,6 +27,19 @@ RSpec.describe VideosController, type: :controller do
       end
 
     end
+
+    context "when there is no search term" do
+      before { get :search }
+      
+      it "returns a ok status code" do
+        expect(response).to have_http_status(200)
+      end
+
+      it "returns a message that there was no search query" do
+        expect(response.body).to match("No search query")
+      end
+      
+    end
     
   end
 
