@@ -14,10 +14,26 @@ Run the following `rake import:video_data`
 ## Running tests
 `bundle exec rspec spec/`
 
+## To run
+`rails s`
+
+### Example queries
+`http://localhost:3000/search?artist=reece%20jacob`  
+`http://localhost:3000/search?city=Bangalore`  
+`http://localhost:3000/search?song_name=Words%20Fail`
+
 # What else I would do
 - Import rake task
   - add additional test for when the video data doesn't contain song information
-  - 
+  - progress overview for importing the video data
+- Tests
+  - Model tests
+  - finish controller tests
+- Param validation
+- Make use of factories, faker for testing
+- move the controller specs to request specs
+- namespace routes so instead of `/search` it would be `/api/v1/search`
+
 
 
 # The Test
