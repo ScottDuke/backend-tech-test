@@ -44,17 +44,21 @@ describe 'import rake task' do
     end
 
     it "creates new or find new artist" do
-      expect(Artist).to receive(:find_or_create_by).with(parsed_data.first["song"]["artist"])
+      artist = double("Artist", id: 2745)
+      expect(Artist).to receive(:find_or_create_by).with(parsed_data.first["song"]["artist"]).and_return(artist)
       run_rake_task
     end
 
     it "creates new or find new city" do
-      expect(City).to receive(:find_or_create_by).with(parsed_data.first["song"]["city"])
+      city = double("City", id: 58)
+      expect(City).to receive(:find_or_create_by).with(parsed_data.first["song"]["city"]).and_return(city)
       run_rake_task
     end
 
      it "creates new or find new song" do
-      expect(Song).to receive(:find_or_create_by).with(parsed_data.first["song"])
+      song = parsed_data.first["song"]
+      expected_args = {id: song["id"], artist_id: song["artist_id"], title: song["title"], cached_slug: song["cached_slug"], city_id: song["city_id"]}
+      expect(Song).to receive(:find_or_create_by).with(expected_args)
       run_rake_task
     end
 
