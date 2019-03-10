@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe VideosController, type: :controller do
   describe "#search" do
+    it "calls #filter_search" do
+      expect(controller).to receive(:filter_search)
+      get :search
+    end
+
     context "searching for songs" do
       let(:song_name) { "some song name" }
       let(:song_results) { [Song.new(id: 1, title: song_name, cached_slug: song_name)] }
