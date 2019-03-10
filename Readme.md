@@ -33,7 +33,7 @@ Run the following `rake import:video_data`
 - Make use of factories, faker for testing
 - move the controller specs to request specs
 - namespace routes so instead of `/search` it would be `/api/v1/search`
-
+- return results in either xml or json
 
 
 # The Test
