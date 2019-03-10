@@ -2,8 +2,10 @@ class VideosController < ApplicationController
   def search
     results = if params[:song_name]
       get_songs
+    else
+      { search: "No search query" }
     end
-    
+
     render json: results, status: :ok
   end
 
