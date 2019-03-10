@@ -1,3 +1,25 @@
+
+Solution is using Ruby 2.5.1 and Rails 5.2.2
+
+# Setup
+```
+  bundle install
+  rails db:migrate
+```
+
+
+## How to import data
+Run the following `rake import:video_data`
+
+## Running tests
+`bundle exec rspec spec/`
+
+# What else I would do
+- Import rake task
+  - add additional test for when the video data doesn't contain song information
+  - 
+
+
 # The Test
 We have the following JSON file hosted on S3 that contains some metadata about videos of Sofar performances:
 
