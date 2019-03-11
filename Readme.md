@@ -34,7 +34,7 @@ Run the following `rake import:video_data`
 - move the controller specs to request specs
 - namespace routes so instead of `/search` it would be `/api/v1/search`
 - return results in either xml or json
-
+- Improve scope names
 
 # The Test
 We have the following JSON file hosted on S3 that contains some metadata about videos of Sofar performances:
